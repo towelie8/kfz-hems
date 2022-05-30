@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<meta charset="utf-8"/>
+<title>Kennzeichen Manager</title>
+</head>
+<body>
+<div align="center">
+    <h1>Kennzeichenliste-HEMS</h1>
+    <a href="https://de.wikipedia.org/wiki/Kfz-Kennzeichen_(Deutschland)">Kennzeicheninformationen</a>
+    <a href="https://www.google.com/maps/@49.8701867,8.6591121,14z?hl=de">Google Maps</a>
+    <a href="new">Erstelle neues Kennzeichen</a>
+    <a href="search">Suche nach Kennzeichen</a>
+    <br/><br/>
+    <table border="5" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Kennzeichen ID</th>
+                <th>Autokennzeichen</th>
+                <th>Stadt/Ort</th>
+                <th>Landkreis/Gemeinde</th>
+                <th>Bundesland</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="kennzeichen : ${listKennzeichen}">
+            	<td th:text="${kennzeichen.id}">Kennzeichen-ID</td>
+                <td th:text="${kennzeichen.autokennzeichen}">Autokennzeichen</td>
+                <td th:text="${kennzeichen.stadt}">Stadt/Ort</td>
+                <td th:text="${kennzeichen.landkreis}">Landkreis/Gemeinde</td>
+                <td th:text="${kennzeichen.bundesland}">Bundesland</td>
+                <td>
+                	<a th:href="@{'/edit/' + ${kennzeichen.id}}">Edit</a>
+                	&nbsp;&nbsp;&nbsp;
+                	<a th:href="@{'/delete/' + ${kennzeichen.id}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>    
+</body>
+</html>
